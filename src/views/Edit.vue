@@ -116,7 +116,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style scoped lang="less">
 .avatar{
   text-align: center;
   margin: 20px 0;

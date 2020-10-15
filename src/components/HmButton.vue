@@ -8,7 +8,7 @@
 export default {}
 </script>
 
-<style>
+<style scoped>
 .hm-button {
   height: 50px;
   background-color: red;
@@ -19,4 +19,6 @@ export default {}
   border-radius: 25px;
   margin: 20px;
 }
-</style>
+</style>>
+
+

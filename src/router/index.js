@@ -8,6 +8,7 @@ import User from '../views/User.vue'
 import Edit from '../views/Edit.vue'
 import MyFollow from '../views/MyFollow.vue'
 import MyComment from '../views/MyComment.vue'
+import MyStar from '../views/MyStar.vue'
 
 //全局前置守卫
 //1.to:你要去哪里  305路由对象
@@ -57,12 +58,18 @@ const router = new VueRouter({
       name: '/my-comment',
       component: MyComment,
     },
+    {
+      path: '/my-star',
+      name: '/my-star',
+      component: MyStar,
+    },
   ],
 })
 
 
 router.beforeEach((to,from,next)=>{
-  if(to.path==='/user'){
+  const pathUrl=['/user','/my-follow','/my-comments','/my-star','/edit']
+  if(pathUrl.includes(to.path)){
     let token=localStorage.getItem('token')
     if(token){
       next()

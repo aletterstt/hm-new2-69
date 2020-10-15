@@ -55,7 +55,7 @@ methods:{
 }
 </script>
 
-<style lang='less'>
+<style scoped lang='less'>
 .list{
   display: flex;
   align-items: center;

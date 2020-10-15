@@ -45,7 +45,7 @@ axios.interceptors.request.use(config=>{
 })
 //响应拦截器
 
-axios.interceptors.response.use(res=>{
+/* axios.interceptors.response.use(res=>{
   const {statusCode,message}=res.data
   if(statusCode===401 && message=="用户信息验证失败"){
     localStorage.removeItem('token')
@@ -53,15 +53,17 @@ axios.interceptors.response.use(res=>{
     router.push('/login')
   }
   return res
-})
+}) */
 //引入子组件
 import HmHeader from './components/HmHeader.vue'
 import HmLogo from './components/HmLogo.vue'
 import HmButton from './components/HmButton.vue'
+import HmPost from './components/HmPost.vue'
 //注册全局组件
 Vue.component('hm-header', HmHeader)
 Vue.component('hm-logo', HmLogo)
 Vue.component('hm-button', HmButton)
+Vue.component('hm-post', HmPost)
 new Vue({
   router,
   render: h => h(App),

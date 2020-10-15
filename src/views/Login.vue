@@ -111,7 +111,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .to-register{
   text-align: right;
   font-size: 14px;

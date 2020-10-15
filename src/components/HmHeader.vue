@@ -14,7 +14,7 @@
 export default {}
 </script>
 
-<style>
+<style scoped>
 .hm-header {
   height: 40px;
   background-color: #f4f4f4;
@@ -33,3 +33,5 @@ export default {}
   font-size: 20px;
 }
 </style>
+</style>>
+
