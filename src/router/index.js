@@ -10,6 +10,7 @@ import MyFollow from '../views/MyFollow.vue'
 import MyComment from '../views/MyComment.vue'
 import MyStar from '../views/MyStar.vue'
 import Home from '../views/Home.vue'
+import Detail from '../views/Detail.vue'
 
 //全局前置守卫
 //1.to:你要去哪里  305路由对象
@@ -34,43 +35,48 @@ const router = new VueRouter({
     },
     {
       path: '/login',
-      name: '/login',
+      name: 'login',
       component: Login,
     },
     {
       path: '/register',
-      name: '/register',
+      name: 'register',
       component: Register,
     },
     {
       path: '/user',
-      name: '/user',
+      name: 'user',
       component: User,
     },
     {
       path: '/edit',
-      name: '/edit',
+      name: 'edit',
       component: Edit,
     },
     {
       path: '/my-follow',
-      name: '/my-follow',
+      name: 'my-follow',
       component: MyFollow,
     },
     {
       path: '/my-comment',
-      name: '/my-comment',
+      name: 'my-comment',
       component: MyComment,
     },
     {
       path: '/my-star',
-      name: '/my-star',
+      name: 'my-star',
       component: MyStar,
     },
     {
       path: '/home',
-      name: '/home',
+      name: 'home',
       component: Home,
+    },
+    {
+      path: '/detail/:id',
+      name: 'detail',
+      component: Detail,
     },
   ],
 })

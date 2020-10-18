@@ -30,7 +30,7 @@
     >
     <van-tabs v-model="active" sticky>
     <van-tab v-for="item in tabsList" :key="item.id" :title=item.name  sticky>
-      <hm-post @click.native="$router.push('/detail')" v-for="(post,index) in postList" :key="index" :post="post"></hm-post>
+      <hm-post @click.native="$router.push(`/detail/${post.id}`)" v-for="(post,index) in postList" :key="index" :post="post"></hm-post>
     </van-tab>
     </van-tabs>
     </van-list>
