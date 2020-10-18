@@ -19,7 +19,10 @@ import Home from '../views/Home.vue'
 //next(false) 不允许进入
 //next('/login') 允许进入 login
 
-
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 //注册
 Vue.use(VueRouter)
 

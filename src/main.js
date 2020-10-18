@@ -9,7 +9,7 @@ import './styles/iconfont.css'
 
 Vue.use(Vant) */
 //按需引入
-import { Field,Toast,Cell, CellGroup,Dialog,Radio,RadioGroup,Uploader,List } from 'vant'
+import { Field,Toast,Cell, CellGroup,Dialog,Radio,RadioGroup,Uploader,List,Tab,Tabs,PullRefresh,Sticky } from 'vant'
 Vue.use(Field)
 Vue.use(Cell)
 Vue.use(CellGroup)
@@ -18,6 +18,10 @@ Vue.use(Radio);
 Vue.use(RadioGroup);
 Vue.use(Uploader);
 Vue.use(List);
+Vue.use(Tab);
+Vue.use(Tabs);
+Vue.use(PullRefresh);
+Vue.use(Sticky);
 import axios from 'axios'
 Vue.prototype.$axios=axios
 axios.defaults.baseURL="http://localhost:3000"
