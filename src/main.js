@@ -9,7 +9,7 @@ import './styles/iconfont.css'
 
 Vue.use(Vant) */
 //按需引入
-import { Field,Toast,Cell, CellGroup,Dialog,Radio,RadioGroup,Uploader,List,Tab,Tabs,PullRefresh,Sticky } from 'vant'
+import { Field,Toast,Cell, CellGroup,Dialog,Radio,RadioGroup,Uploader,List,Tab,Tabs,PullRefresh,Sticky,Icon } from 'vant'
 Vue.use(Field)
 Vue.use(Cell)
 Vue.use(CellGroup)
@@ -22,6 +22,7 @@ Vue.use(Tab);
 Vue.use(Tabs);
 Vue.use(PullRefresh);
 Vue.use(Sticky);
+Vue.use(Icon);
 import axios from 'axios'
 Vue.prototype.$axios=axios
 axios.defaults.baseURL="http://localhost:3000"
@@ -63,11 +64,17 @@ import HmHeader from './components/HmHeader.vue'
 import HmLogo from './components/HmLogo.vue'
 import HmButton from './components/HmButton.vue'
 import HmPost from './components/HmPost.vue'
+import HmComment from './components/HmComment.vue'
+import HmFloor from './components/HmFloor.vue'
+Vue.component('hm-floor', HmFloor)
 //注册全局组件
 Vue.component('hm-header', HmHeader)
 Vue.component('hm-logo', HmLogo)
 Vue.component('hm-button', HmButton)
 Vue.component('hm-post', HmPost)
+Vue.component('hm-comment', HmComment)
+// Vue.component('hm-floor', HmFloor)
+
 new Vue({
   router,
   render: h => h(App),
