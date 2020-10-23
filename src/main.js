@@ -37,6 +37,12 @@ Vue.filter('date',function(val,format="YYYY-MM-DD"){
   return moment(val).format(format)
 })
 
+const bus=new Vue()
+//挂在到原型上
+Vue.prototype.$bus=bus
+
+
+
 //请求拦截器
 //拦截所有的axios请求
 //axios.get(url,config)

@@ -36,6 +36,7 @@
          <i>{{detail.like_length}}</i>
        </div>
      </div>
+     <div class="box" ref="box"></div>
    <div class="comments">
     
      <hm-comment v-for="comment in commentList " :key="comment.id" :comment="comment"></hm-comment>
@@ -44,21 +45,25 @@
    <div class="footer">
      <div class="input" v-if="isShow">
        <div class="left">
-         <input type="text" ref="input" placeholder="写跟贴" @focus="handelFocus">
+         <input type="text" placeholder="写跟贴" @focus="handelFocus">
        </div>
         <div class="center">
-          <van-icon name="chat-o" badge="9" />
+          <van-icon name="chat-o" :badge="detail.comment_length" />
         </div>
         <div class="right">
-          <van-icon name="star-o" />
+          <van-icon  name="star-o" @click="star" :class="{active:detail.has_star}" />
         </div>
      </div>
      <div v-else class="textarea">
        <div class="left">
-         <textarea ref="textarea" placeholder="请输入内容" @blur="handelBlur"></textarea>
+         <textarea v-model="content" ref="textarea"
+          :placeholder="replyName? '回复'+replyName : '请输入内容'"
+           @blur="handelBlur"
+           >
+           </textarea>
        </div>
        <div class="right">
-          <div class="send">发送</div>
+          <div class="send" @mousedown="send()">发送</div>
         </div>
      </div>
    </div>
@@ -66,7 +71,7 @@
 </template>
 
 <script>
-import func from '../../vue-temp/vue-editor-bridge';
+
 export default {
   data(){
     return {
@@ -74,17 +79,23 @@ export default {
         user: {},
       }, // 详情页信息
       commentList:[],
-      isShow:true
+      isShow:true,
+      replyId:'',
+      replyName:'',
+      content:''
     }
-  },
-  mounted(){
-    console.log('111',this.$refs);
   },
 created(){
   // console.log('详情页',this.$route.params.id);
   this.getDetail(),
    this.getCommentList()
-   
+  this.$bus.$on('reply',async (replyId,replyName)=>{
+     this.replyId=replyId
+     this.replyName=replyName
+     this.isShow=false
+     await this.$nextTick()
+     this.$refs.textarea && this.$refs.textarea.focus()
+   } )
 },
 methods:{
   //获取详情页
@@ -139,12 +150,47 @@ console.log('评论列表',res.data);
 this.commentList=res.data.data
 },
 //获得焦点
-handelFocus(){
+async handelFocus(){
   this.isShow=false
+ await this.$nextTick()
+    //  console.log('111',this.$refs);
+ this.$refs.textarea.focus()
 },
 //失去焦点
 handelBlur(){
   this.isShow=true
+  if(this.content){
+  this.replyId=''
+  this.replyName=''
+  }
+ 
+},
+//发送
+async send(){
+let res = await this.$axios.post(`/post_comment/${this.$route.params.id}`,{
+  content:this.content,
+  parent_id:this.replyId
+})
+console.log('评论',res.data);
+const {statusCode,message} = res.data
+if(statusCode==200){
+  this.$toast.success(message)
+  this.getCommentList()
+  this.getDetail()
+  this.replyId=''
+  this.replyName=''
+  this.content=''
+  this.$refs.box.scrollIntoView()
+}
+},
+//点击收藏
+async star(){
+  let res = await this.$axios.get(`/post_star/${this.$route.params.id}`)
+  const {statusCode,message} = res.data
+  if(statusCode==200){
+    this.$toast.success(message)
+    this.getDetail()
+  }
 }
 }
 }
@@ -258,6 +304,9 @@ handelBlur(){
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+    .active{
+      color: red;
     }
   }
   .textarea {

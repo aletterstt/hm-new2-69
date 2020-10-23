@@ -11,7 +11,8 @@ import MyComment from '../views/MyComment.vue'
 import MyStar from '../views/MyStar.vue'
 import Home from '../views/Home.vue'
 import Detail from '../views/Detail.vue'
-
+import TabsEdit from '../views/TabsEdit.vue'
+import Search from '../views/Search.vue'
 //全局前置守卫
 //1.to:你要去哪里  305路由对象
 //2.form 你从那里来 301 路由对象
@@ -77,6 +78,16 @@ const router = new VueRouter({
       path: '/detail/:id',
       name: 'detail',
       component: Detail,
+    },
+    {
+      path: '/tabsedit',
+      name: 'tabsedit',
+      component: TabsEdit,
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: Search,
     },
   ],
 })

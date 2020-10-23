@@ -8,7 +8,7 @@
        <div class="name">{{comment.user.nickname}}</div>
        <div class="date">{{comment.create_date | date}}</div>
      </div>
-     <div class="right">
+     <div class="right" @click="reply">
        回复
      </div>
    </div>
@@ -34,6 +34,10 @@ methods:{
     else{
       return num
     }
+  },
+  reply(){
+    // console.log('回复的内容');
+   this.$bus.$emit('reply',this.comment.id,this.comment.user.nickname)
   }
 }
 }
